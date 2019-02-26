@@ -12,3 +12,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.cesium-viewer-bottom {
+  bottom: 25px !important;
+}
+
+.cesium-viewer-animationContainer {
+  bottom: 25px !important;
+}
+
+.cesium-viewer-fullscreenContainer{
+  bottom: 25px !important;
+}

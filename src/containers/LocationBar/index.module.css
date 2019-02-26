@@ -1,0 +1,20 @@
+.locationbar {
+  padding: 3px 10px;
+  font-size: 13px;
+  color: #e9e9e9;
+  text-shadow: 2px 2px 2px #000;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: space-between;
+}
+
+.locationcamera {
+  display: inline-block;
+  min-width: 80px;
+  padding-right: 20px;
+}
+
+.distancelegend {
+  padding-right: 20px;
+  text-decoration: line-through;
+}

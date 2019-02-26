@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { hot } from 'react-hot-loader';
+import AppViewer from './containers/AppViewer';
+import ToolBar from './containers/ToolBar';
+import LocationBar from './containers/LocationBar';
+import styles from './App.module.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  componentDidMount() {}
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <>
+        <ToolBar className={styles.toolbar} />
+        <LocationBar className={styles.locationbar} />
+        <AppViewer />
+      </>
     );
   }
 }
 
-export default App;
+export default hot(module)(App);
