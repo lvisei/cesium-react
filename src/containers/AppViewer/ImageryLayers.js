@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { WebMapTileServiceImageryProvider } from 'cesium';
 import { ImageryLayer, ImageryLayerCollection } from 'resium';
 import memoize from 'memoize-one';
+// console.log(React.memo);
+
 
 // const imageryProvider = memoize(imageryProvider => new WebMapTileServiceImageryProvider(imageryProvider));
 const imageryProvider = imageryProvider => new WebMapTileServiceImageryProvider(imageryProvider);
