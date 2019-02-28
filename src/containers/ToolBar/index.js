@@ -3,23 +3,24 @@ import { Menu, Dropdown, Button, Icon } from 'antd';
 import { inject } from 'mobx-react';
 import styles from './index.module.css';
 import appViewerStore from '@/stores/modules/appViewer';
-import czmlBox from '@/data/czml/czmlBox';
-import satelliteCzml from '@/data/czml/satelliteCzml';
-import dynamicPoint from '@/data/czml/dynamicPoint';
-import pathCzml from '@/data/czml/pathCzml';
-import pointGeoJson from '@/data/geoJson/pointGeoJson';
-import statestopoGeojson from '@/data/geoJson/statestopoGeojson';
-import simplestylesGeojson from '@/data/geoJson/simplestylesGeojson';
 
 const handleCzmlMenuClick = ({ key: type }) => {
   if (type === 'Box') {
-    appViewerStore.setCzmlData(czmlBox);
+    import('@/data/czml/czmlBox').then(({ default: czmlBox }) => {
+      appViewerStore.setCzmlData(czmlBox);
+    });
   } else if (type === 'Satellite') {
-    appViewerStore.setCzmlData(satelliteCzml);
+    import('@/data/czml/satelliteCzml').then(({ default: satelliteCzml }) => {
+      appViewerStore.setCzmlData(satelliteCzml);
+    });
   } else if (type === 'DynamicPoint') {
-    appViewerStore.setCzmlData(dynamicPoint);
-  }else if (type === 'Path') {
-    appViewerStore.setCzmlData(pathCzml);
+    import('@/data/czml/dynamicPoint').then(({ default: dynamicPoint }) => {
+      appViewerStore.setCzmlData(dynamicPoint);
+    });
+  } else if (type === 'Path') {
+    import('@/data/czml/pathCzml').then(({ default: pathCzml }) => {
+      appViewerStore.setCzmlData(pathCzml);
+    });
   }
 };
 
@@ -34,11 +35,17 @@ const czmlMenu = (
 
 const handleGeoJsonClick = ({ key: type }) => {
   if (type === 'Point') {
-    appViewerStore.setGeoJsonData(pointGeoJson);
+    import('@/data/geoJson/pointGeoJson').then(({ default: pointGeoJson }) => {
+      appViewerStore.setGeoJsonData(pointGeoJson);
+    });
   } else if (type === 'Simple Styles') {
-    appViewerStore.setGeoJsonData(simplestylesGeojson);
+    import('@/data/geoJson/simplestylesGeojson').then(({ default: simplestylesGeojson }) => {
+      appViewerStore.setGeoJsonData(simplestylesGeojson);
+    });
   } else if (type === 'Population') {
-    appViewerStore.setGeoJsonData(statestopoGeojson);
+    import('@/data/geoJson/statestopoGeojson').then(({ default: statestopoGeojson }) => {
+      appViewerStore.setGeoJsonData(statestopoGeojson);
+    });
   }
 };
 
@@ -61,7 +68,7 @@ class ToolBar extends PureComponent {
 
   render() {
     const { setCzmlData, setGeoJsonData } = this.props.appViewer;
-    const _className = `${styles.toolbar} ${this.props.className ? this.props.className : ''} `
+    const _className = `${styles.toolbar} ${this.props.className ? this.props.className : ''} `;
     return (
       <div className={_className}>
         <Dropdown overlay={czmlMenu}>
