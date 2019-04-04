@@ -24,7 +24,7 @@ class AppViewer extends Component {
   componentDidMount() {
     if (this.viewer) {
       this.viewer.scene.debugShowFramesPerSecond = true;
-      // this.viewer.cesiumWidget.creditContainer.style.display = 'none';
+      this.viewer.cesiumWidget.creditContainer.style.display = 'none';
     }
   }
 
@@ -51,7 +51,7 @@ class AppViewer extends Component {
     return (
       <Viewer
         full
-        animation={true}
+        animation={false}
         shouldAnimate={true}
         baseLayerPicker={false}
         timeline={false}
