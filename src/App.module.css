@@ -13,3 +13,10 @@
   bottom: 0px;
   z-index: 1;
 }
+
+@media screen and (max-width: 550px) {
+  .toolbar {
+    display: flex;
+    flex-direction: column;
+  }
+}
