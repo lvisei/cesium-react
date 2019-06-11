@@ -1,19 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "mobx-react";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'mobx-react';
 
-import stores from "./stores";
+import stores from './stores';
 
-import "./index.css";
-import App from "./App";
+import './index.css';
+import App from './App';
 
-import * as serviceWorker from "./utils/serviceWorker";
+import * as serviceWorker from './utils/serviceWorker';
 
 ReactDOM.render(
   <Provider {...stores}>
     <App />
   </Provider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

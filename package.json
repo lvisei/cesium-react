@@ -7,7 +7,8 @@
     "dev": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "lint": "eslint --fix --ext tsx,ts,js,jsx src",
+    "lint": "npm run eslint && npm run prettier",
+    "eslint": "eslint --fix --ext tsx,ts,js,jsx src",
     "prettier": "prettier -c --write 'src/**/*'",
     "precommit": "lint-staged"
   },

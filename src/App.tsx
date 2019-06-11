@@ -1,14 +1,14 @@
-import React from "react";
-import { hot } from "react-hot-loader";
+import * as React from 'react';
+import { hot } from 'react-hot-loader/root';
 
-import AppViewer from "./containers/AppViewer";
-import ToolBar from "./containers/ToolBar";
-import LocationBar from "./containers/LocationBar";
-import styles from "./App.module.css";
+import AppViewer from './containers/AppViewer';
+import ToolBar from './containers/ToolBar';
+import LocationBar from './containers/LocationBar';
+import styles from './App.module.css';
 
 interface Props {}
 
-class App extends React.Component<Props> {
+class App extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.state = {};
@@ -25,4 +25,4 @@ class App extends React.Component<Props> {
   }
 }
 
-export default hot(module)(App);
+export default hot(App);

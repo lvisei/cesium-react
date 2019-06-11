@@ -1,22 +1,13 @@
 const path = require("path");
 const fs = require("fs");
+const { ESLINT_MODES } = require("@craco/craco");
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 module.exports = {
   eslint: {
-    configure: {
-      extends: ["react-app", "plugin:prettier/recommended"],
-      plugins: ["prettier"],
-      rules: {
-        "no-console": "off",
-        "no-debugger": "off",
-        "no-unused-vars": "off",
-        // "@typescript-eslint/no-unused-vars": "off",
-        "prettier/prettier": "error"
-      }
-    }
+    mode: ESLINT_MODES.file
   },
   babel: {
     plugins: [

@@ -1,23 +1,17 @@
-import React, { Component } from "react";
-import { observer, inject } from "mobx-react";
-import {
-  Ion,
-  Cartesian3,
-  CesiumTerrainProvider,
-  IonResource,
-  Color
-} from "cesium";
-import { Viewer, CameraFlyTo, Cesium3DTileset } from "resium";
-import appViewerStore from "@/stores/modules/appViewer";
-import ImageryLayers from "./ImageryLayers";
-import GeoJson from "./GeoJson";
-import Czml from "./Czml";
-import EventHandler from "./EventHandler";
-import Entitys from "./Entitys";
+import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
+import { Ion, Cartesian3, CesiumTerrainProvider, IonResource, Color } from 'cesium';
+import { Viewer, CameraFlyTo, Cesium3DTileset } from 'resium';
+import appViewerStore from '@/stores/modules/appViewer';
+import ImageryLayers from './ImageryLayers';
+import GeoJson from './GeoJson';
+import Czml from './Czml';
+import EventHandler from './EventHandler';
+import Entitys from './Entitys';
 
 Ion.defaultAccessToken = appViewerStore.cesiumAccessToken;
 
-@inject("appViewer")
+@inject('appViewer')
 @observer
 class AppViewer extends Component {
   constructor(props) {
@@ -30,7 +24,7 @@ class AppViewer extends Component {
   componentDidMount() {
     if (this.viewer) {
       this.viewer.scene.debugShowFramesPerSecond = true;
-      this.viewer.cesiumWidget.creditContainer.style.display = "none";
+      this.viewer.cesiumWidget.creditContainer.style.display = 'none';
     }
   }
 
@@ -47,17 +41,12 @@ class AppViewer extends Component {
   }
 
   render() {
-    const {
-      geoJsonData,
-      czmlData,
-      destination,
-      imageryProviders
-    } = this.props.appViewer;
+    const { geoJsonData, czmlData, destination, imageryProviders } = this.props.appViewer;
     const terrainProvider = new CesiumTerrainProvider({
       url: IonResource.fromAssetId(3956)
     });
 
-    console.log("AppViewer render");
+    console.log('AppViewer render');
 
     return (
       <Viewer

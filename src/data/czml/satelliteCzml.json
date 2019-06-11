@@ -238,10 +238,7 @@
       },
       "followSurface": false,
       "positions": {
-        "references": [
-          "Facility/AGI#position",
-          "Satellite/Geoeye1/Sensor/Sensor#position"
-        ]
+        "references": ["Facility/AGI#position", "Satellite/Geoeye1/Sensor/Sensor#position"]
       }
     }
   },
