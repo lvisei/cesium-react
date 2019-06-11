@@ -1,4 +1,5 @@
-## cesium Map
+## cesium-react  
+[![Build Status](https://www.travis-ci.org/liuvigongzuoshi/cesium-react.svg?branch=master)](https://www.travis-ci.org/liuvigongzuoshi/cesium-react)
 
 ### cesuim Api
 
