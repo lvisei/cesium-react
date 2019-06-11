@@ -1,7 +1,14 @@
-import React, { PureComponent } from 'react';
-import { inject } from 'mobx-react';
-import { KeyboardEventModifier, ScreenSpaceEventType, Ellipsoid, defined, Math as CesiumMath, Globe } from 'cesium';
-import { ScreenSpaceEventHandler, ScreenSpaceEvent, withCesium } from 'resium';
+import React, { PureComponent } from "react";
+import { inject } from "mobx-react";
+import {
+  KeyboardEventModifier,
+  ScreenSpaceEventType,
+  Ellipsoid,
+  defined,
+  Math as CesiumMath,
+  Globe
+} from "cesium";
+import { ScreenSpaceEventHandler, ScreenSpaceEvent, withCesium } from "resium";
 
 /**
  *获取实例的二维笛卡尔点的经度、纬度、相机高度、海拔高度
@@ -12,7 +19,12 @@ import { ScreenSpaceEventHandler, ScreenSpaceEvent, withCesium } from 'resium';
  * @param {*} [ellipsoid=Ellipsoid.WGS84]
  * @returns
  */
-const getMousePointPosition = (camera, globe, Cartesian2, ellipsoid = Ellipsoid.WGS84) => {
+const getMousePointPosition = (
+  camera,
+  globe,
+  Cartesian2,
+  ellipsoid = Ellipsoid.WGS84
+) => {
   // 通过指定的椭球或者地图对应的坐标系，将鼠标的二维坐标转换为对应椭球体三维坐标
   const cartesian = camera.pickEllipsoid(Cartesian2);
   if (!defined(cartesian)) return null;
@@ -35,7 +47,7 @@ const getMousePointPosition = (camera, globe, Cartesian2, ellipsoid = Ellipsoid.
   };
 };
 
-@inject('appViewer')
+@inject("appViewer")
 class EventHandler extends PureComponent {
   _handleEvent(e) {
     console.log(e);
@@ -54,7 +66,10 @@ class EventHandler extends PureComponent {
   render() {
     return (
       <ScreenSpaceEventHandler>
-        <ScreenSpaceEvent action={this._handleMouseMoveEvent.bind(this)} type={ScreenSpaceEventType.MOUSE_MOVE} />
+        <ScreenSpaceEvent
+          action={this._handleMouseMoveEvent.bind(this)}
+          type={ScreenSpaceEventType.MOUSE_MOVE}
+        />
       </ScreenSpaceEventHandler>
     );
   }

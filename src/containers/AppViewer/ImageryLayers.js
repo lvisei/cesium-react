@@ -1,12 +1,12 @@
-import React, { PureComponent } from 'react';
-import { WebMapTileServiceImageryProvider } from 'cesium';
-import { ImageryLayer, ImageryLayerCollection } from 'resium';
-import memoize from 'memoize-one';
+import React, { PureComponent } from "react";
+import { WebMapTileServiceImageryProvider } from "cesium";
+import { ImageryLayer, ImageryLayerCollection } from "resium";
+// import memoize from "memoize-one";
 // console.log(React.memo);
 
-
 // const imageryProvider = memoize(imageryProvider => new WebMapTileServiceImageryProvider(imageryProvider));
-const imageryProvider = imageryProvider => new WebMapTileServiceImageryProvider(imageryProvider);
+const imageryProvider = imageryProvider =>
+  new WebMapTileServiceImageryProvider(imageryProvider);
 
 // const ImageryLayers = ({ imageryProviders }) => {
 //   return (
@@ -20,11 +20,13 @@ const imageryProvider = imageryProvider => new WebMapTileServiceImageryProvider(
 
 class ImageryLayers extends PureComponent {
   render() {
-    console.log('ImageryLayers render');
+    console.log("ImageryLayers render");
     return (
       <ImageryLayerCollection>
         {this.props.imageryProviders.map((item, i) => {
-          return <ImageryLayer key={i} imageryProvider={imageryProvider(item)} />;
+          return (
+            <ImageryLayer key={i} imageryProvider={imageryProvider(item)} />
+          );
         })}
       </ImageryLayerCollection>
     );

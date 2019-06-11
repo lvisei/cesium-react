@@ -1,0 +1,22 @@
+
+.toolbar {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  z-index: 1;
+}
+
+.locationbar {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 1;
+}
+
+@media screen and (max-width: 550px) {
+  .toolbar {
+    display: flex;
+    flex-direction: column;
+  }
+}

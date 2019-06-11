@@ -1,8 +1,10 @@
 {
-  "extends": "react-app",
+  "extends": ["react-app", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
   "rules": {
     "no-console": "off",
     "no-debugger": "off",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "prettier/prettier": "error"
   }
 }
