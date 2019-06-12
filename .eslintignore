@@ -1,6 +1,3 @@
-/config/
-/scripts/
-/public/
-/build/
+/node_modules/
 
 /src/utils/registerServiceWorker.js

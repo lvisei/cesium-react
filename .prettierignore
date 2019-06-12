@@ -1,0 +1,11 @@
+/node_modules/
+**/*.svg
+package.json
+.gitignore
+.npmignore
+.prettierignore
+.DS_Store
+.editorconfig
+.eslintignore
+**/*.yml
+.**.js

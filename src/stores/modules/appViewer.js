@@ -29,7 +29,7 @@ class AppViewer {
   cesiumAccessToken = cesiumAccessToken;
   td_img_imageryProvider = td_img_imageryProvider;
   td_cia_imageryProvider = td_cia_imageryProvider;
-  imageryProviders = [td_img_imageryProvider, td_cia_imageryProvider]
+  imageryProviders = [td_img_imageryProvider, td_cia_imageryProvider];
 
   @observable czmlData = czmlData;
   @observable geoJsonData = geoJsonData;

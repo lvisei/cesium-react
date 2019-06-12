@@ -1,4 +1,4 @@
-import appViewer from './modules/appViewer'
+import appViewer from './modules/appViewer';
 
 export default {
   appViewer

@@ -1,8 +1,0 @@
-{
-  "extends": "react-app",
-  "rules": {
-    "no-console": "off",
-    "no-debugger": "off",
-    "no-unused-vars": "off"
-  }
-}

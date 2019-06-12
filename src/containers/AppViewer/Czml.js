@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { CzmlDataSource, withCesium } from 'resium';
 
 const Czml = ({ cesium, czmlData }) => {
