@@ -8,4 +8,6 @@ package.json
 .editorconfig
 .eslintignore
 **/*.yml
-.**.js
+.*.js
+*.config.js
+
