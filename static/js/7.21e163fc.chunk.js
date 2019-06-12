@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{181:function(e){e.exports={type:"Feature",properties:{name:"Coors Field",amenity:"Baseball Stadium",popupContent:"This is where the Rockies play!"},geometry:{type:"Point",coordinates:[104.99404,39.75621]}}}}]);
+//# sourceMappingURL=7.21e163fc.chunk.js.map
