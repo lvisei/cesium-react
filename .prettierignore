@@ -1,4 +1,8 @@
 **/*.svg
+**/*.ico
+**/*.png
+**/*.jpg
+**/*.jpeg
 /node_modules/
 package.json
 lib/
