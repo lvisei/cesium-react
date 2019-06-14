@@ -1,8 +1,24 @@
-# cesium Map
+# Cesium Map
 
 [![Build Status](https://www.travis-ci.org/liuvigongzuoshi/cesium-react.svg?branch=master)](https://www.travis-ci.org/liuvigongzuoshi/cesium-react)
 
-### cesuim Api
+### Resium 库
+
+- [resium](https://github.com/darwin-education/resium#readme) - React components for 🌏 Cesium.
+
+#### React 生态
+
+- React
+- ~~Redux~~
+- ~~Dva~~
+- ~~Umi~~
+- Mobx
+- immutable-js、immer
+- memoize-one
+
+### Webpack 打包
+
+### Cesuim Api
 
 #### Entity 实体
 
@@ -12,7 +28,7 @@
 
 #### Camera 相机
 
-```
+```js
 new Cesium.Camera(scene)
 ```
 
@@ -26,13 +42,13 @@ Methods
 
 #### Cartographic 经纬度和高度
 
-```
+```js
 new Cesium.Cartographic(longitude, latitude, height)
 ```
 
 #### Ellipsoid
 
-```
+```js
 new Cesium.Ellipsoid(x, y, z)
 ```
 
@@ -40,7 +56,7 @@ new Cesium.Ellipsoid(x, y, z)
 
 #### Globe
 
-```
+```js
 new Cesium.Globe(ellipsoid)
 ```
 
@@ -50,20 +66,4 @@ new Cesium.Globe(ellipsoid)
 
 - toDegrees(radians) 弧度转为度的十进制
 
-### 插件
-
-- cesium-drawhelper
-
-### Webpack 打包
-
-### Resium 库
-
-#### React 生态
-
-- React
-- Redux
-- Dva
-- Umi
-- Mobx
-- immutable-js 与 immer
-- memoize-one
+### Cesuim 插件
