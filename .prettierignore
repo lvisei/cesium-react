@@ -1,6 +1,19 @@
-/node_modules/
 **/*.svg
+**/*.ico
+**/*.png
+**/*.jpg
+**/*.jpeg
+/node_modules/
 package.json
+lib/
+dist/
+CNAME
+LICENSE
+yarn.lock
+netlify.toml
+yarn-error.log
+*.sh
+*.snap
 .gitignore
 .npmignore
 .prettierignore
@@ -8,4 +21,3 @@ package.json
 .editorconfig
 .eslintignore
 **/*.yml
-.**.js
