@@ -1,15 +1,15 @@
 {
-  "name": "tsc-cli",
-  "version": "0.1.0",
+  "name": "esium-react",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "craco start",
     "dev": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "lint": "npm run eslint && npm run prettier",
-    "eslint": "eslint --fix --ext tsx,ts,js,jsx src",
-    "prettier": "prettier -c --write 'src/**/*'",
+    "lint": "eslint --ext tsx,ts,js,jsx src",
+    "lint-fix": "eslint --fix --ext tsx,ts,js,jsx src",
+    "prettier": "prettier -c --write '**/*'",
     "precommit": "lint-staged"
   },
   "dependencies": {
@@ -40,33 +40,33 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ],
     "src/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix",
+      "git add"
+    ],
+    "src/**/*.{js,jsx,ts,tsx,json,css,md}": [
+      "prettier --write",
       "git add"
     ]
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@craco/craco": "^5.2.1",
-    "@types/cesium": "^1.54.4",
-    "@types/jest": "^24.0.13",
-    "@types/node": "^12.0.7",
-    "@types/react": "^16.8.19",
+    "@types/cesium": "^1.54.5",
+    "@types/jest": "^24.0.14",
+    "@types/node": "^12.0.8",
+    "@types/react": "^16.8.20",
     "@types/react-dom": "^16.8.4",
     "babel-plugin-import": "^1.12.0",
     "craco-cesium": "^1.1.1",
     "craco-plugin-react-hot-reload": "0.0.3",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-prettier": "^3.1.0",
-    "husky": "^2.4.0",
-    "lint-staged": "^8.2.0",
+    "husky": "^2.4.1",
+    "lint-staged": "^8.2.1",
     "prettier": "^1.18.2",
     "react-hot-loader": "^4.11.0",
     "react-scripts": "^3.0.1",
-    "typescript": "^3.4.5"
+    "typescript": "^3.5.2"
   }
 }

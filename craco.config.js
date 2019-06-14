@@ -1,6 +1,6 @@
-const path = require("path");
-const fs = require("fs");
-const { ESLINT_MODES } = require("@craco/craco");
+const path = require('path');
+const fs = require('fs');
+const { ESLINT_MODES } = require('@craco/craco');
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
@@ -11,22 +11,19 @@ module.exports = {
   },
   babel: {
     plugins: [
-      ["@babel/plugin-proposal-decorators", { legacy: true }],
+      ['@babel/plugin-proposal-decorators', { legacy: true }],
       [
-        "import",
+        'import',
         {
-          libraryName: "antd",
-          libraryDirectory: "es",
-          style: "css"
+          libraryName: 'antd',
+          libraryDirectory: 'es',
+          style: 'css'
         }
       ]
     ]
   },
   webpack: {
-    alias: { "@": resolveApp("src") }
+    alias: { '@': resolveApp('src') }
   },
-  plugins: [
-    { plugin: require("craco-plugin-react-hot-reload") },
-    { plugin: require("craco-cesium")() }
-  ]
+  plugins: [{ plugin: require('craco-plugin-react-hot-reload') }, { plugin: require('craco-cesium')() }]
 };
