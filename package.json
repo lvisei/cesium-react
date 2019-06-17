@@ -2,6 +2,7 @@
   "name": "esium-react",
   "version": "1.0.0",
   "private": true,
+  "homepage" : "https://liuvigongzuoshi.github.io/cesium-react",
   "scripts": {
     "start": "craco start",
     "dev": "craco start",
