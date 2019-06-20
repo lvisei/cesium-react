@@ -5,14 +5,20 @@ import { Provider } from 'mobx-react';
 import stores from './stores';
 
 import './index.css';
-import App from './App';
+import Loading from './components/Loading';
 
 import * as serviceWorker from './utils/serviceWorker';
 
+const { lazy, Suspense } = React;
+
+const App = lazy(() => import('./App'));
+
 ReactDOM.render(
-  <Provider {...stores}>
-    <App />
-  </Provider>,
+  <Suspense fallback={<Loading height="100vh" tip={'加载中...'} />}>
+    <Provider {...stores}>
+      <App />
+    </Provider>
+  </Suspense>,
   document.getElementById('root')
 );
 

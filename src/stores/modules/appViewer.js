@@ -20,10 +20,6 @@ const td_cia_imageryProvider = {
   tileMatrixSetID: 'GoogleMapsCompatible',
   maximumLevel: 18
 };
-const geoJsonData = null;
-const czmlData = null;
-const destination = null;
-const positionData = null;
 
 class AppViewer {
   cesiumAccessToken = cesiumAccessToken;
@@ -31,18 +27,25 @@ class AppViewer {
   td_cia_imageryProvider = td_cia_imageryProvider;
   imageryProviders = [td_img_imageryProvider, td_cia_imageryProvider];
 
-  @observable czmlData = czmlData;
-  @observable geoJsonData = geoJsonData;
-  @observable destination = destination;
-  @observable positionData = positionData;
+  @observable czmlData;
+  @observable geoJsonData;
+  @observable destination;
+  @observable positionData;
+
+  constructor() {
+    this.czmlData = null;
+    this.geoJsonData = null;
+    this.destination = null;
+    this.positionData = null;
+  }
 
   @action
   setDestination = destination => (this.destination = destination);
-  @action
+
   setCzmlData = czmlData => (this.czmlData = czmlData);
-  @action
+
   setGeoJsonData = geoJsonData => (this.geoJsonData = geoJsonData);
-  @action
+
   setPositionData = positionData => (this.positionData = positionData);
 }
 
