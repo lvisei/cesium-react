@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,KACE,QAAS,CACT,SAAU,CACV,mIAC4C,CAC5C,kCAAmC,CACnC,iCACF,CAEA,KACE,uEACF,CAEA,MACE,UAAW,CACX,WACF,CAMA,wDACE,qBACF,CAEA,mCACE,qBACF,CA5BA,gBACE,iBAAkB,CAClB,qBACF","file":"main.00639bdf.chunk.css","sourcesContent":[".common-loading {\n  text-align: center;\n  background-color: rgb(255, 255, 255);\n}\n"]}
