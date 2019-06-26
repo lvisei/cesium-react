@@ -1,10 +1,12 @@
 import React from 'react';
-import { GeoJsonDataSource, withCesium } from 'resium';
+import { GeoJsonDataSource, CesiumContext } from 'resium';
 
-const GeoJson = ({ cesium, geoJsonData }) => {
+const GeoJson = ({ geoJsonData }) => {
+  console.log('GeoJson render');
+  const cesium = React.useContext(CesiumContext);
   return geoJsonData ? (
     <GeoJsonDataSource data={geoJsonData} onLoad={geoJsonData => cesium.viewer.flyTo(geoJsonData)} />
   ) : null;
 };
 
-export default withCesium(GeoJson);
+export default React.memo(GeoJson);

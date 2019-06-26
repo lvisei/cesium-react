@@ -17,6 +17,7 @@
     "@hot-loader/react-dom": "^16.8.6",
     "antd": "^3.19.8",
     "cesium": "^1.58.1",
+    "memoize-one": "^5.0.4",
     "mobx": "^5.10.1",
     "mobx-react": "^6.1.1",
     "react": "^16.8.6",

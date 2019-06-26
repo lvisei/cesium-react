@@ -16,13 +16,15 @@ Ion.defaultAccessToken = appViewerStore.cesiumAccessToken;
 class AppViewer extends Component {
   constructor(props) {
     super(props);
+    this.ref = React.createRef();
     this.state = {
       viewer: null
     };
   }
 
   componentDidMount() {
-    if (this.viewer) {
+    if (this.ref.current) {
+      this.viewer = this.ref.current.cesiumElement;
       this.viewer.scene.debugShowFramesPerSecond = true;
       this.viewer.cesiumWidget.creditContainer.style.display = 'none';
     }
@@ -56,10 +58,8 @@ class AppViewer extends Component {
         baseLayerPicker={false}
         timeline={false}
         geocoder={false}
-        // terrainProvider={terrainProvider}
-        ref={e => {
-          this.viewer = e && e.cesiumElement;
-        }}
+        terrainProvider={terrainProvider}
+        ref={this.ref}
       >
         <ImageryLayers imageryProviders={imageryProviders} />
         <EventHandler />

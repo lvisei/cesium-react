@@ -52,6 +52,7 @@ class EventHandler extends PureComponent {
   }
 
   render() {
+    console.log('EventHandler render');
     return (
       <ScreenSpaceEventHandler>
         <ScreenSpaceEvent action={this._handleMouseMoveEvent.bind(this)} type={ScreenSpaceEventType.MOUSE_MOVE} />

@@ -5,6 +5,7 @@ import { Entity, PointGraphics, EntityDescription } from 'resium';
 class Entitys extends PureComponent {
   render() {
     const entityPosition = Cartesian3.fromDegrees(105.0707383, 30.7117244, 100);
+    console.log('Entitys render');
     return (
       <Entity name="Sokyo" position={entityPosition}>
         <PointGraphics pixelSize={25} color={Color.CRIMSON} outlineWidth={5} outlineColor={Color.LIGHTCORAL} />

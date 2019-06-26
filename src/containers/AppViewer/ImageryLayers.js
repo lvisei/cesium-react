@@ -1,21 +1,24 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useMemo } from 'react';
 import { WebMapTileServiceImageryProvider } from 'cesium';
 import { ImageryLayer, ImageryLayerCollection } from 'resium';
-// import memoize from "memoize-one";
-// console.log(React.memo);
+import memoize from 'memoize-one';
 
-// const imageryProvider = memoize(imageryProvider => new WebMapTileServiceImageryProvider(imageryProvider));
-const imageryProvider = imageryProvider => new WebMapTileServiceImageryProvider(imageryProvider);
+const imageryProvider = memoize(imageryProvider => new WebMapTileServiceImageryProvider(imageryProvider));
+// const imageryProvider = imageryProvider => new WebMapTileServiceImageryProvider(imageryProvider);
 
-// const ImageryLayers = ({ imageryProviders }) => {
-//   return (
-//     <ImageryLayerCollection>
-//       {imageryProviders.map((item, i) => {
-//         return <ImageryLayer key={i} imageryProvider={imageryProvider(item)} />;
-//       })}
-//     </ImageryLayerCollection>
-//   );
-// };
+// const ImageryLayers = React.memo(
+//   ({ imageryProviders }) => {
+//     console.log('ImageryLayers render');
+//     return (
+//       <ImageryLayerCollection>
+//         {imageryProviders.map((item, i) => {
+//           return <ImageryLayer key={i} imageryProvider={imageryProvider(item)} />;
+//         })}
+//       </ImageryLayerCollection>
+//     );
+//   },
+//   (prevProps, nextProps) => prevProps.imageryProviders === nextProps.imageryProviders
+// );
 
 class ImageryLayers extends PureComponent {
   render() {
