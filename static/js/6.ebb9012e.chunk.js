@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{196:function(i){i.exports=[{id:"document",name:"CZML Point - Time Dynamic",version:"1.0"},{id:"point",availability:"2012-08-04T16:00:00Z/2012-08-04T16:05:00Z",position:{epoch:"2012-08-04T16:00:00Z",cartographicDegrees:[0,-70,20,15e4,100,-80,44,15e4,200,-90,18,15e4,300,-98,52,15e4]},point:{color:{rgba:[255,255,255,128]},outlineColor:{rgba:[255,0,0,128]},outlineWidth:3,pixelSize:15}}]}}]);
-//# sourceMappingURL=6.ebb9012e.chunk.js.map
