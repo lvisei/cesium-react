@@ -1,7 +1,13 @@
 import React from 'react';
+import Cesium from 'cesium';
 import { CzmlDataSource, withCesium } from 'resium';
 
-const Czml = ({ cesium, czmlData }) => {
+interface Iprops {
+  cesium: { viewer: Cesium.Viewer };
+  czmlData: Cesium.Resource;
+}
+
+const Czml: React.FunctionComponent<Iprops> = ({ cesium, czmlData }) => {
   console.log('Czml render');
   return czmlData ? (
     <CzmlDataSource data={czmlData} onLoad={CzmlDataSource => cesium.viewer.flyTo(CzmlDataSource)} />

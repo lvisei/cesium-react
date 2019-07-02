@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@hot-loader/react-dom": "^16.8.6",
-    "antd": "^3.19.8",
-    "cesium": "^1.58.1",
+    "antd": "^3.20.0",
+    "cesium": "^1.59.0",
     "memoize-one": "^5.0.4",
     "mobx": "^5.10.1",
     "mobx-react": "^6.1.1",
@@ -62,12 +62,12 @@
     "babel-plugin-import": "^1.12.0",
     "craco-cesium": "^1.1.1",
     "craco-plugin-react-hot-reload": "0.0.3",
-    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",
-    "husky": "^2.5.0",
-    "lint-staged": "^8.2.1",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.0.0",
     "prettier": "^1.18.2",
-    "react-hot-loader": "^4.11.1",
+    "react-hot-loader": "^4.12.0",
     "react-scripts": "^3.0.1",
     "typescript": "^3.5.2"
   }
