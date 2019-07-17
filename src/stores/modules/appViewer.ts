@@ -21,32 +21,43 @@ const td_cia_imageryProvider = {
   maximumLevel: 18
 };
 
+type Resource = string | object | Cesium.Resource | undefined;
+
+interface IPosition {
+  long: number | undefined;
+  lat: number | undefined;
+  height: number | undefined;
+  elevation: number | undefined;
+}
+
 class AppViewer {
   cesiumAccessToken = cesiumAccessToken;
   td_img_imageryProvider = td_img_imageryProvider;
   td_cia_imageryProvider = td_cia_imageryProvider;
   imageryProviders = [td_img_imageryProvider, td_cia_imageryProvider];
 
-  @observable czmlData;
-  @observable geoJsonData;
-  @observable destination;
-  @observable positionData;
+  @observable.ref czmlData: Resource;
+  @observable.ref geoJsonData: Resource;
+  @observable.shallow destination: number | undefined;
+  @observable positionData: IPosition;
 
   constructor() {
-    this.czmlData = null;
-    this.geoJsonData = null;
-    this.destination = null;
-    this.positionData = null;
+    this.positionData = {
+      long: 0,
+      lat: 0,
+      height: 0,
+      elevation: 0
+    };
   }
 
   @action
-  setDestination = destination => (this.destination = destination);
+  setDestination = (destination: number | undefined) => (this.destination = destination);
 
-  setCzmlData = czmlData => (this.czmlData = czmlData);
+  setCzmlData = (czmlData: Resource) => (this.czmlData = czmlData);
 
-  setGeoJsonData = geoJsonData => (this.geoJsonData = geoJsonData);
+  setGeoJsonData = (geoJsonData: Resource) => (this.geoJsonData = geoJsonData);
 
-  setPositionData = positionData => (this.positionData = positionData);
+  setPositionData = (positionData: IPosition) => (this.positionData = positionData);
 }
 
 export default new AppViewer();
