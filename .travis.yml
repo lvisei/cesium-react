@@ -3,7 +3,7 @@ node_js:
   - "stable"
 
 before_install:
-- openssl aes-256-cbc -K $encrypted_XXXXXXXX_iv -iv $encrypted_XXXXXXXX_key in .travis/id_ras.enc -out ~/.ssh/id_rsa -d
+- openssl aes-256-cbc -K $encrypted_XXXXXXXX_iv -iv $encrypted_XXXXXXXX_key -in .travis/id_ras.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa 
 - eval $(ssh-agent)
 - ssh-add ~/.ssh/id_rsa
@@ -20,4 +20,3 @@ script:
 branches:
   only:
     - master
-    
