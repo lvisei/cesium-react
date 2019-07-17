@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/cesium-react/precache-manifest.2fd1a961a194bd792ccbaf48a309cdb5.js"
+  "/cesium-react/precache-manifest.493aeae1c2398ff8c7471eb28cc4855f.js"
 );
 
 self.addEventListener('message', (event) => {
