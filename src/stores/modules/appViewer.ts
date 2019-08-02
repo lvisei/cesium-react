@@ -21,25 +21,59 @@ const td_cia_imageryProvider = {
   maximumLevel: 18
 };
 
-type Resource = string | object | Cesium.Resource | undefined;
+export type Resource = string | object | Cesium.Resource | undefined;
+
+export type WebMapTileServiceImagery = {
+  url: string;
+  format?: string;
+  layer: string;
+  style: string;
+  tileMatrixSetID: string;
+  tileMatrixLabels?: any[];
+  clock?: Cesium.Clock;
+  times?: Cesium.TimeIntervalCollection;
+  dimensions?: any;
+  tileWidth?: number;
+  tileHeight?: number;
+  tilingScheme?: Cesium.TilingScheme;
+  rectangle?: Cesium.Rectangle;
+  minimumLevel?: number;
+  maximumLevel?: number;
+  ellipsoid?: Cesium.Ellipsoid;
+  credit?: Cesium.Credit | string;
+  subdomains?: string | string[];
+};
+
+type Destination = Cesium.Cartesian3 | Cesium.Rectangle | undefined;
 
 interface IPosition {
-  long: number | undefined;
-  lat: number | undefined;
-  height: number | undefined;
-  elevation: number | undefined;
+  long: number | string;
+  lat: number | string;
+  height: number;
+  elevation: number;
 }
 
-class AppViewer {
-  cesiumAccessToken = cesiumAccessToken;
-  td_img_imageryProvider = td_img_imageryProvider;
-  td_cia_imageryProvider = td_cia_imageryProvider;
-  imageryProviders = [td_img_imageryProvider, td_cia_imageryProvider];
+export interface IAppViewerState {
+  cesiumAccessToken: string;
+  td_img_imageryProvider: WebMapTileServiceImagery;
+  td_cia_imageryProvider: WebMapTileServiceImagery;
+  imageryProviders: WebMapTileServiceImagery[];
+  czmlData: Resource;
+  geoJsonData: Resource;
+  destination: Destination;
+  positionData: IPosition;
+}
 
-  @observable.ref czmlData: Resource;
-  @observable.ref geoJsonData: Resource;
-  @observable.shallow destination: number | undefined;
-  @observable positionData: IPosition;
+export class AppViewer implements IAppViewerState {
+  public cesiumAccessToken = cesiumAccessToken;
+  public td_img_imageryProvider = td_img_imageryProvider;
+  public td_cia_imageryProvider = td_cia_imageryProvider;
+  public imageryProviders = [td_img_imageryProvider, td_cia_imageryProvider];
+
+  @observable.ref public czmlData: Resource;
+  @observable.ref public geoJsonData: Resource;
+  @observable.shallow public destination: Destination;
+  @observable public positionData: IPosition;
 
   constructor() {
     this.positionData = {
@@ -51,13 +85,24 @@ class AppViewer {
   }
 
   @action
-  setDestination = (destination: number | undefined) => (this.destination = destination);
+  setDestination = (destination: Destination): void => {
+    this.destination = destination;
+  };
 
-  setCzmlData = (czmlData: Resource) => (this.czmlData = czmlData);
+  @action
+  setCzmlData = (czmlData: Resource): void => {
+    this.czmlData = czmlData;
+  };
 
-  setGeoJsonData = (geoJsonData: Resource) => (this.geoJsonData = geoJsonData);
+  @action
+  setGeoJsonData = (geoJsonData: Resource): void => {
+    this.geoJsonData = geoJsonData;
+  };
 
-  setPositionData = (positionData: IPosition) => (this.positionData = positionData);
+  @action
+  setPositionData = (positionData: IPosition): void => {
+    this.positionData = positionData;
+  };
 }
 
 export default new AppViewer();

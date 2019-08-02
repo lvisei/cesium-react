@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { inject } from 'mobx-react';
-import { KeyboardEventModifier, ScreenSpaceEventType, Ellipsoid, defined, Math as CesiumMath, Globe } from 'cesium';
+import { ScreenSpaceEventType, Ellipsoid, defined, Math as CesiumMath, Globe } from 'cesium';
 import { ScreenSpaceEventHandler, ScreenSpaceEvent, withCesium } from 'resium';
+import { IStores } from '@/stores';
 
 /**
  *获取实例的二维笛卡尔点的经度、纬度、相机高度、海拔高度
@@ -12,10 +13,15 @@ import { ScreenSpaceEventHandler, ScreenSpaceEvent, withCesium } from 'resium';
  * @param {*} [ellipsoid=Ellipsoid.WGS84]
  * @returns
  */
-const getMousePointPosition = (camera, globe, Cartesian2, ellipsoid = Ellipsoid.WGS84) => {
+const getMousePointPosition = (
+  camera: Cesium.Camera,
+  globe: Cesium.Globe,
+  Cartesian2: Cesium.Cartesian2,
+  ellipsoid: Ellipsoid = Ellipsoid.WGS84
+) => {
   // 通过指定的椭球或者地图对应的坐标系，将鼠标的二维坐标转换为对应椭球体三维坐标
   const cartesian = camera.pickEllipsoid(Cartesian2);
-  if (!defined(cartesian)) return null;
+  if (!defined(cartesian)) return;
 
   // 将笛卡尔坐标转换为地理坐标
   const cartographic = ellipsoid.cartesianToCartographic(cartesian);
@@ -35,30 +41,45 @@ const getMousePointPosition = (camera, globe, Cartesian2, ellipsoid = Ellipsoid.
   };
 };
 
+interface EventHandlerProps {
+  appViewer?: IStores['appViewer'];
+}
+
+interface EventHandlerContext {
+  camera?: Cesium.Camera;
+  globe?: Cesium.Globe;
+}
+
+type props = EventHandlerProps & { cesium: EventHandlerContext };
+
 @inject('appViewer')
-class EventHandler extends PureComponent {
-  _handleEvent(e) {
+class EventHandler extends PureComponent<props, {}> {
+  constructor(props: props) {
+    super(props);
+    this.state = {};
+  }
+
+  _handleEvent(e: Event) {
     console.log(e);
   }
 
-  _handleMouseMoveEvent({ endPosition }) {
-    const {
-      cesium: { camera, globe },
-      appViewer: { setPositionData }
-    } = this.props;
-    const positionData = getMousePointPosition(camera, globe, endPosition);
-    if (!positionData) return false;
+  _handleMouseMoveEvent = (e: { position: Cesium.Cartesian2; endPosition?: Cesium.Cartesian2 }): void => {
+    const { camera, globe } = this.props.cesium!;
+    const { setPositionData } = this.props.appViewer!;
+    if (!e.endPosition || !camera || !globe) return;
+    const positionData = getMousePointPosition(camera, globe, e.endPosition);
+    if (!positionData) return;
     setPositionData(positionData);
-  }
+  };
 
   render() {
     console.log('EventHandler render');
     return (
       <ScreenSpaceEventHandler>
-        <ScreenSpaceEvent action={this._handleMouseMoveEvent.bind(this)} type={ScreenSpaceEventType.MOUSE_MOVE} />
+        <ScreenSpaceEvent action={this._handleMouseMoveEvent} type={ScreenSpaceEventType.MOUSE_MOVE} />
       </ScreenSpaceEventHandler>
     );
   }
 }
 
-export default withCesium(EventHandler);
+export default withCesium<EventHandlerProps, EventHandlerContext>(EventHandler);

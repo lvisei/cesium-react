@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
-import { Ion, Cartesian3, CesiumTerrainProvider, IonResource, Color } from 'cesium';
-import { Viewer, CameraFlyTo, Cesium3DTileset } from 'resium';
+import { Ion, IonResource, CesiumTerrainProvider } from 'cesium';
+import { Viewer, CameraFlyTo } from 'resium';
 import appViewerStore from '@/stores/modules/appViewer';
 import ImageryLayers from './ImageryLayers';
 import GeoJson from './GeoJson';
 import Czml from './Czml';
 import EventHandler from './EventHandler';
 import Entitys from './Entitys';
+import { IStores } from '@/stores';
 
 Ion.defaultAccessToken = appViewerStore.cesiumAccessToken;
 
+interface IProps {
+  appViewer?: IStores['appViewer'];
+}
+
 @inject('appViewer')
 @observer
-class AppViewer extends Component {
-  constructor(props) {
+class AppViewer extends Component<IProps, {}> {
+  ref: { current: any | HTMLDivElement };
+  viewer: Cesium.Viewer | undefined | any;
+
+  constructor(props: IProps) {
     super(props);
     this.ref = React.createRef();
-    this.state = {
-      viewer: null
-    };
+    this.state = {};
   }
 
   componentDidMount() {
@@ -30,20 +36,20 @@ class AppViewer extends Component {
     }
   }
 
-  _handleReady(tileset) {
+  _handleReady = (tileset: any) => {
     console.log(tileset);
 
     if (this.viewer) {
       this.viewer.zoomTo(tileset);
     }
-  }
+  };
 
-  _handleEvent(e) {
+  _handleEvent(e: Event) {
     console.log(e);
   }
 
   render() {
-    const { geoJsonData, czmlData, destination, imageryProviders } = this.props.appViewer;
+    const { geoJsonData, czmlData, destination, imageryProviders } = this.props.appViewer!;
     const terrainProvider = new CesiumTerrainProvider({
       url: IonResource.fromAssetId(3956)
     });
@@ -67,7 +73,7 @@ class AppViewer extends Component {
         {destination ? <CameraFlyTo destination={destination} /> : null}
         <GeoJson geoJsonData={geoJsonData} />
         <Czml czmlData={czmlData} />
-        {/* <Cesium3DTileset url={IonResource.fromAssetId(5714)} onReady={this._handleReady.bind(this)} /> */}
+        {/* <Cesium3DTileset url={IonResource.fromAssetId(5714)} onReady={this._handleReady} /> */}
       </Viewer>
     );
   }
