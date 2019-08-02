@@ -9,8 +9,8 @@ import styles from './App.module.css';
 interface Props {}
 
 class App extends React.Component<Props, {}> {
-  constructor(props: Props, context: any) {
-    super(props, context);
+  constructor(props: Props) {
+    super(props);
     this.state = {};
   }
 

@@ -15,7 +15,7 @@ branches:
 deploy:
   provider: pages
   local_dir: build
-  skip_cleanup: true
+  skip_cleanup: false
   github_token: $GITHUB_TOKEN
   keep_history: true
   on:
