@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Menu, Dropdown, Button, Icon } from 'antd';
 import { inject } from 'mobx-react';
 import styles from './index.module.css';
+import { IStores } from '@/stores';
 import appViewerStore from '@/stores/modules/appViewer';
 
 enum CzmmlMenuItemName {
@@ -71,11 +72,13 @@ const geoJsonMenu = (
 );
 
 interface IProps {
-  appViewer?: { setCzmlData: (() => void) | undefined; setGeoJsonData: (() => void) | undefined };
   className: string;
+  appViewer?: IStores['appViewer'];
 }
 
-@inject('appViewer')
+@inject((stores: IStores) => ({
+  appViewer: stores.appViewer
+}))
 class ToolBar extends PureComponent<IProps, {}> {
   constructor(props: IProps) {
     super(props);
@@ -85,7 +88,7 @@ class ToolBar extends PureComponent<IProps, {}> {
   componentDidMount() {}
 
   render() {
-    // const { setCzmlData, setGeoJsonData } = this.props.appViewer;
+    // const { setCzmlData, setGeoJsonData } = this.props.appViewer!;
     const _className = `${styles.toolbar} ${this.props.className ? this.props.className : ''} `;
     return (
       <div className={_className}>

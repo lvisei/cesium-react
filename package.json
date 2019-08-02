@@ -15,14 +15,14 @@
   },
   "dependencies": {
     "@hot-loader/react-dom": "^16.8.6",
-    "antd": "^3.20.3",
-    "cesium": "^1.59.0",
+    "antd": "^3.20.7",
+    "cesium": "^1.60.0",
     "memoize-one": "^5.0.5",
-    "mobx": "^5.11.0",
+    "mobx": "^5.13.0",
     "mobx-react": "^6.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "resium": "^1.5.0"
+    "resium": "^1.6.0"
   },
   "browserslist": {
     "production": [
@@ -55,19 +55,20 @@
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@craco/craco": "^5.2.4",
     "@types/cesium": "^1.54.5",
-    "@types/jest": "^24.0.15",
-    "@types/node": "^12.6.6",
-    "@types/react": "^16.8.23",
-    "@types/react-dom": "^16.8.4",
+    "@types/jest": "^24.0.16",
+    "@types/memoize-one": "^4.1.1",
+    "@types/node": "^12.6.9",
+    "@types/react": "^16.8.24",
+    "@types/react-dom": "^16.8.5",
     "babel-plugin-import": "^1.12.0",
     "craco-cesium": "^1.1.1",
     "craco-plugin-react-hot-reload": "^0.1.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",
-    "husky": "^3.0.0",
-    "lint-staged": "^9.2.0",
+    "husky": "^3.0.2",
+    "lint-staged": "^9.2.1",
     "prettier": "^1.18.2",
-    "react-hot-loader": "^4.12.7",
+    "react-hot-loader": "^4.12.10",
     "react-scripts": "^3.0.1",
     "typescript": "^3.5.3"
   }
