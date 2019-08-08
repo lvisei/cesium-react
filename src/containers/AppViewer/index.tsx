@@ -21,10 +21,14 @@ interface IProps {
 class AppViewer extends Component<IProps, {}> {
   ref: { current: any | HTMLDivElement };
   viewer: Cesium.Viewer | undefined | any;
+  terrainProvider: CesiumTerrainProvider;
 
   constructor(props: IProps) {
     super(props);
     this.ref = React.createRef();
+    this.terrainProvider = new CesiumTerrainProvider({
+      url: IonResource.fromAssetId(3956)
+    });
     this.state = {};
   }
 
@@ -50,9 +54,6 @@ class AppViewer extends Component<IProps, {}> {
 
   render() {
     const { geoJsonData, czmlData, destination, imageryProviders } = this.props.appViewer!;
-    const terrainProvider = new CesiumTerrainProvider({
-      url: IonResource.fromAssetId(3956)
-    });
 
     console.log('AppViewer render');
 
@@ -64,7 +65,7 @@ class AppViewer extends Component<IProps, {}> {
         baseLayerPicker={false}
         timeline={false}
         geocoder={false}
-        terrainProvider={terrainProvider}
+        terrainProvider={this.terrainProvider}
         ref={this.ref}
       >
         <ImageryLayers imageryProviders={imageryProviders} />
