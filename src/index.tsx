@@ -9,6 +9,9 @@ import Loading from './components/Loading';
 
 import * as serviceWorker from './utils/serviceWorker';
 
+// Hack
+import '@/@types/cesium.d.ts';
+
 const { lazy, Suspense } = React;
 
 const App = lazy(() => import('./App'));
