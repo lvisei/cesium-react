@@ -4,7 +4,7 @@ const cesiumAccessToken =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyMWQ3MWM4Yy01ZGZjLTRkZGEtYjJhMi1hMDdkYWZhN2I2YWYiLCJpZCI6NTc3Nywic2NvcGVzIjpbImFzbCIsImFzciIsImdjIl0sImlhdCI6MTU2MTUzNDQwMX0.h8scGb5fMjG2UFsqvXpQL7YvCheiI-YWUQUyBcQym5s';
 const td_img_imageryProvider = {
   url:
-    'http://t0.tianditu.gov.cn/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=e60679f6e9718d3426f745fd8cd94cbd',
+    'https://t0.tianditu.gov.cn/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=e60679f6e9718d3426f745fd8cd94cbd',
   layer: 'tdtBasicLayer',
   style: 'default',
   format: 'image/jpeg',
@@ -13,7 +13,7 @@ const td_img_imageryProvider = {
 };
 const td_cia_imageryProvider = {
   url:
-    'http://t0.tianditu.gov.cn/cia_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=cia&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default.jpg&tk=e60679f6e9718d3426f745fd8cd94cbd',
+    'https://t0.tianditu.gov.cn/cia_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=cia&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default.jpg&tk=e60679f6e9718d3426f745fd8cd94cbd',
   layer: 'tdtAnnoLayer',
   style: 'default',
   format: 'image/jpeg',
