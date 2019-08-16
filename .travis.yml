@@ -12,15 +12,15 @@ branches:
   only:
     - master
 
-deploy:
-  provider: pages
-  local_dir: build
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  keep_history: true
-  on:
-    branch: master
+# deploy:
+#   provider: pages
+#   local_dir: build
+#   skip_cleanup: true
+#   github_token: $GITHUB_TOKEN
+#   keep_history: true
+#   on:
+#     branch: master
 
-env:
-  global:
-    secure: OwhjNFOXRbr7XueG9EABEaaN0U2iAmGyTHB4aP1eILD/i3gQ6lkFWQ7Wh7j3BML0e9O5V4+a6UKwdMb+3Z1jIFHo0vWEYUb7rAnEP/0LaX8XfmmyIDtDZ0RN/C2lVDw7eczGa35wXsdnmv+XC9smv0wgdKiC5rsoPH71tyeH/J4pr0A/qLcnF8INFjAkyO0b0FQN56jr1xNTKYStwdne3p9f7iyorU/4emAZWHh0G7ilvfHRhOPtcNy8ZyUSckKSxyzn7fWGs5laV20m0jB8pE13VIbFE6sc/0JbMFNlMpX+CoQM7SSxXt3EFDIOkPKTx/5NMyC4qXeHpDnCpEa18kMebYaLf6CytorRzx9U9ZeXLNJ6j9Ljp5CMcfSzr3Dsta2mzwSW9MgUzBpR8hIdjxpxyWraG8q0OeAHynoJ0FQ6DyPXWcfFmW8vrXlF7EUWzz+MZ5iZFgZSrpziJ388ZFWdzYbd4FtJTZOdvP8V9Y5iUuGADecGDwdOl72euFzPTlPZsI8KaeqvmPJZZLHC2TMg7RV1XRZ6aCnsMxN2hz9sD+1DNbNWxO0KWUsVYbzzcnQDqAfBZIcOesSsq/TrHpzfDltfPE7h5N9do32xR9k2oTJV4a9F4kJPysCkjpOGPyfMEohBHKw1EhUr+Q/zYYIkMd7eUKFr7Y/0W3sDLN8=
+# env:
+#   global:
+#     secure: OwhjNFOXRbr7XueG9EABEaaN0U2iAmGyTHB4aP1eILD/i3gQ6lkFWQ7Wh7j3BML0e9O5V4+a6UKwdMb+3Z1jIFHo0vWEYUb7rAnEP/0LaX8XfmmyIDtDZ0RN/C2lVDw7eczGa35wXsdnmv+XC9smv0wgdKiC5rsoPH71tyeH/J4pr0A/qLcnF8INFjAkyO0b0FQN56jr1xNTKYStwdne3p9f7iyorU/4emAZWHh0G7ilvfHRhOPtcNy8ZyUSckKSxyzn7fWGs5laV20m0jB8pE13VIbFE6sc/0JbMFNlMpX+CoQM7SSxXt3EFDIOkPKTx/5NMyC4qXeHpDnCpEa18kMebYaLf6CytorRzx9U9ZeXLNJ6j9Ljp5CMcfSzr3Dsta2mzwSW9MgUzBpR8hIdjxpxyWraG8q0OeAHynoJ0FQ6DyPXWcfFmW8vrXlF7EUWzz+MZ5iZFgZSrpziJ388ZFWdzYbd4FtJTZOdvP8V9Y5iUuGADecGDwdOl72euFzPTlPZsI8KaeqvmPJZZLHC2TMg7RV1XRZ6aCnsMxN2hz9sD+1DNbNWxO0KWUsVYbzzcnQDqAfBZIcOesSsq/TrHpzfDltfPE7h5N9do32xR9k2oTJV4a9F4kJPysCkjpOGPyfMEohBHKw1EhUr+Q/zYYIkMd7eUKFr7Y/0W3sDLN8=
