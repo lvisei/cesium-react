@@ -93,12 +93,12 @@ class ToolBar extends PureComponent<IProps, {}> {
     return (
       <div className={_className}>
         <Dropdown overlay={czmlMenu}>
-          <Button type="primary" style={{ marginRight: 10, marginBottom: 10 }}>
+          <Button ghost type="primary" style={{ marginRight: 10, marginBottom: 10 }}>
             Render czml and fly to <Icon type="down" />
           </Button>
         </Dropdown>
         <Dropdown overlay={geoJsonMenu}>
-          <Button type="primary">
+          <Button ghost type="primary">
             Render geojson and fly to <Icon type="down" />
           </Button>
         </Dropdown>
