@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
-import Cesium, { CesiumTerrainProvider } from 'cesium';
+import Cesium, { Ion, IonResource, CesiumTerrainProvider } from 'cesium';
 import { Viewer, CameraFlyTo } from 'resium';
 import appViewerStore from '@/stores/modules/appViewer';
 import ImageryLayers from './ImageryLayers';
@@ -10,7 +10,8 @@ import EventHandler from './EventHandler';
 import Entitys from './Entitys';
 import { IStores } from '@/stores';
 
-(Cesium as any).Ion.defaultAccessToken = appViewerStore.cesiumAccessToken;
+Ion.defaultAccessToken = appViewerStore.cesiumAccessToken;
+// (Cesium as any).Ion.defaultAccessToken = appViewerStore.cesiumAccessToken;
 
 interface IProps {
   appViewer?: IStores['appViewer'];
@@ -27,7 +28,8 @@ class AppViewer extends Component<IProps, {}> {
     super(props);
     this.ref = React.createRef();
     this.terrainProvider = new CesiumTerrainProvider({
-      url: (Cesium as any).IonResource.fromAssetId(3956)
+      url: IonResource.fromAssetId(3956)
+      // url: Cesium.IonResource.fromAssetId(3956)
     });
     this.state = {};
   }
