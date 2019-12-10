@@ -29,7 +29,7 @@ class AppViewer extends Component<IProps, {}> {
     this.ref = React.createRef();
     this.terrainProvider = new CesiumTerrainProvider({
       url: IonResource.fromAssetId(3956)
-      // url: Cesium.IonResource.fromAssetId(3956)
+      // url: (Cesium as any).IonResource.fromAssetId(3956)
     });
     this.state = {};
   }
