@@ -6,7 +6,7 @@ import { IStores } from '@/stores';
 const LocationBar = observer(({ className }: { className: string }) => {
   const _className = `${styles.locationbar} ${className} `;
   const {
-    appViewer: { positionData }
+    appViewer: { positionData },
   } = React.useContext(MobXProviderContext) as IStores;
   const { long, lat, height, elevation } = positionData;
 

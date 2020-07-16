@@ -9,7 +9,7 @@ const td_img_imageryProvider = {
   style: 'default',
   format: 'image/jpeg',
   tileMatrixSetID: 'GoogleMapsCompatible',
-  maximumLevel: 18
+  maximumLevel: 18,
 };
 const td_cia_imageryProvider = {
   url:
@@ -18,7 +18,7 @@ const td_cia_imageryProvider = {
   style: 'default',
   format: 'image/jpeg',
   tileMatrixSetID: 'GoogleMapsCompatible',
-  maximumLevel: 18
+  maximumLevel: 18,
 };
 
 export type Resource = string | object | Cesium.Resource | undefined;
@@ -80,7 +80,7 @@ export class AppViewer implements IAppViewerState {
       long: 0,
       lat: 0,
       height: 0,
-      elevation: 0
+      elevation: 0,
     };
   }
 

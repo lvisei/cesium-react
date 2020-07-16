@@ -9,7 +9,7 @@ enum CzmmlMenuItemName {
   Box = 'Box',
   Satellite = 'Satellite',
   DynamicPoint = 'DynamicPoint',
-  Path = 'Path'
+  Path = 'Path',
 }
 
 const handleCzmlMenuClick = ({ key }: { key: string }) => {
@@ -44,7 +44,7 @@ const czmlMenu = (
 enum GeoJsonMenuItemName {
   Point = 'Point',
   SimpleStyles = 'Simple Styles',
-  Population = 'Population'
+  Population = 'Population',
 }
 
 const handleGeoJsonClick = ({ key }: { key: string }) => {
@@ -77,7 +77,7 @@ interface IProps {
 }
 
 @inject((stores: IStores) => ({
-  appViewer: stores.appViewer
+  appViewer: stores.appViewer,
 }))
 class ToolBar extends PureComponent<IProps, {}> {
   constructor(props: IProps) {
