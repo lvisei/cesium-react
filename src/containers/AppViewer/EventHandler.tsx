@@ -37,7 +37,7 @@ const getMousePointPosition = (
     long: longitude,
     lat: latitude,
     height: height,
-    elevation: elevation
+    elevation: elevation,
   };
 };
 

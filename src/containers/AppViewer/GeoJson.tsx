@@ -1,6 +1,6 @@
 import React from 'react';
 import { Viewer as CesiumViewer } from 'cesium';
-import { GeoJsonDataSource, CesiumContext } from 'resium';
+import { GeoJsonDataSource, Context, useCesium } from 'resium';
 import { Resource } from '@/stores/modules/appViewer';
 
 interface Iprops {
@@ -13,10 +13,10 @@ interface ICesiumContext {
 
 const GeoJson: React.FunctionComponent<Iprops> = ({ geoJsonData }) => {
   console.log('GeoJson render');
-  // TODO: define Type
-  const cesium: any = React.useContext(CesiumContext);
+  // const cesium = React.useContext<ICesiumContext>(CesiumContext);
+  const context = useCesium<Context>();
   return geoJsonData ? (
-    <GeoJsonDataSource data={geoJsonData} onLoad={geoJsonData => cesium.viewer.flyTo(geoJsonData)} />
+    <GeoJsonDataSource data={geoJsonData} onLoad={(geoJsonData) => context.viewer!.flyTo(geoJsonData)} />
   ) : null;
 };
 

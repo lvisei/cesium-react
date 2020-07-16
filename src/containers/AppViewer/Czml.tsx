@@ -11,7 +11,7 @@ interface Iprops {
 const Czml: React.FunctionComponent<Iprops> = ({ cesium, czmlData }) => {
   console.log('Czml render');
   return czmlData ? (
-    <CzmlDataSource data={czmlData} onLoad={CzmlDataSource => cesium!.viewer.flyTo(CzmlDataSource)} />
+    <CzmlDataSource data={czmlData} onLoad={(CzmlDataSource) => cesium!.viewer.flyTo(CzmlDataSource)} />
   ) : null;
 };
 

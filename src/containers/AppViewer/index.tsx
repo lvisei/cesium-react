@@ -11,8 +11,8 @@ import EventHandler from './EventHandler';
 import Entitys from './Entitys';
 import { IStores } from '@/stores';
 
-// Ion.defaultAccessToken = appViewerStore.cesiumAccessToken;
-(Cesium as any).Ion.defaultAccessToken = appViewerStore.cesiumAccessToken;
+Cesium.Ion.defaultAccessToken = appViewerStore.cesiumAccessToken;
+// (Cesium as any).Ion.defaultAccessToken = appViewerStore.cesiumAccessToken;
 
 interface IProps {
   appViewer?: IStores['appViewer'];
@@ -29,8 +29,7 @@ class AppViewer extends Component<IProps, {}> {
     super(props);
     this.ref = React.createRef();
     this.terrainProvider = new CesiumTerrainProvider({
-      // url: IonResource.fromAssetId(3956)
-      url: (Cesium as any).IonResource.fromAssetId(3956)
+      url: Cesium.IonResource.fromAssetId(3956),
     });
     this.state = {};
   }

@@ -23,6 +23,7 @@ module.exports = {
     ]
   },
   webpack: {
+    'react-dom': '@hot-loader/react-dom',
     alias: { '@': resolveApp('src') }
   },
   plugins: [{ plugin: require('craco-plugin-react-hot-reload') }, { plugin: require('craco-cesium')() }]

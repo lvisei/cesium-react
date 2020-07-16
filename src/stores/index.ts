@@ -5,5 +5,5 @@ export interface IStores {
 }
 
 export default {
-  appViewer
+  appViewer,
 };
