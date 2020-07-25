@@ -3,7 +3,7 @@ import styles from './index.module.css';
 import { observer, MobXProviderContext } from 'mobx-react';
 import { IStores } from '@/stores';
 
-const LocationBar = observer(({ className }: { className: string }) => {
+const LocationBar = ({ className }: { className: string }) => {
   const _className = `${styles.locationbar} ${className} `;
   const {
     appViewer: { positionData },
@@ -25,6 +25,6 @@ const LocationBar = observer(({ className }: { className: string }) => {
       <div className={styles.distancelegend}>比例尺</div>
     </div>
   );
-});
+};
 
-export default LocationBar;
+export default observer(LocationBar);
