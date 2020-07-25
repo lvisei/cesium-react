@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { observer, inject } from 'mobx-react';
 import * as Cesium from 'cesium';
 import { CesiumTerrainProvider } from 'cesium';
@@ -20,7 +20,7 @@ interface IProps {
 
 @inject('appViewer')
 @observer
-class AppViewer extends Component<IProps, {}> {
+class AppViewer extends PureComponent<IProps, {}> {
   ref: { current: any | HTMLDivElement };
   viewer: Cesium.Viewer | undefined | any;
   terrainProvider: CesiumTerrainProvider;
