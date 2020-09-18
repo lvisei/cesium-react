@@ -1,6 +1,15 @@
 import React, { PureComponent } from 'react';
 import { inject } from 'mobx-react';
-import { ScreenSpaceEventType, Ellipsoid, defined, Math as CesiumMath, Globe } from 'cesium';
+import {
+  Camera,
+  Cartesian2,
+  Cartesian3,
+  ScreenSpaceEventType,
+  Ellipsoid,
+  defined,
+  Math as CesiumMath,
+  Globe,
+} from 'cesium';
 import { ScreenSpaceEventHandler, ScreenSpaceEvent, withCesium } from 'resium';
 import { IStores } from '@/stores';
 
@@ -14,13 +23,13 @@ import { IStores } from '@/stores';
  * @returns
  */
 const getMousePointPosition = (
-  camera: Cesium.Camera,
-  globe: Cesium.Globe,
-  Cartesian2: Cesium.Cartesian2,
+  camera: Camera,
+  globe: Globe,
+  Cartesian2: Cartesian2,
   ellipsoid: Ellipsoid = Ellipsoid.WGS84
 ) => {
   // 通过指定的椭球或者地图对应的坐标系，将鼠标的二维坐标转换为对应椭球体三维坐标
-  const cartesian = camera.pickEllipsoid(Cartesian2);
+  const cartesian = camera.pickEllipsoid(Cartesian2) as Cartesian3;
   if (!defined(cartesian)) return;
 
   // 将笛卡尔坐标转换为地理坐标
@@ -29,7 +38,7 @@ const getMousePointPosition = (
   const longitude = CesiumMath.toDegrees(cartographic.longitude).toFixed(6);
   const latitude = CesiumMath.toDegrees(cartographic.latitude).toFixed(6);
   // 获取海拔高度
-  const elevation = Math.ceil(globe.getHeight(cartographic));
+  const elevation = Math.ceil(globe.getHeight(cartographic) as number);
   // 获取相机高度
   const height = Math.ceil(camera.positionCartographic.height) - elevation;
 
@@ -46,8 +55,8 @@ interface EventHandlerProps {
 }
 
 interface EventHandlerContext {
-  camera?: Cesium.Camera;
-  globe?: Cesium.Globe;
+  camera?: Camera;
+  globe?: Globe;
 }
 
 type props = EventHandlerProps & { cesium: EventHandlerContext };
@@ -63,7 +72,7 @@ class EventHandler extends PureComponent<props, {}> {
     console.log(e);
   }
 
-  _handleMouseMoveEvent = (e: { position: Cesium.Cartesian2; endPosition?: Cesium.Cartesian2 }): void => {
+  _handleMouseMoveEvent = (e: { position: Cartesian2; endPosition?: Cartesian2 }): void => {
     const { camera, globe } = this.props.cesium!;
     const { setPositionData } = this.props.appViewer!;
     if (!e.endPosition || !camera || !globe) return;
