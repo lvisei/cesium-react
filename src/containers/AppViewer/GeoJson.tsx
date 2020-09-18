@@ -14,7 +14,7 @@ interface ICesiumContext {
 const GeoJson: React.FunctionComponent<Iprops> = ({ geoJsonData }) => {
   console.log('GeoJson render');
   // const cesium = React.useContext<ICesiumContext>(CesiumContext);
-  const context = useCesium<Context>();
+  const context: Context = useCesium();
   return geoJsonData ? (
     <GeoJsonDataSource data={geoJsonData} onLoad={(geoJsonData) => context.viewer!.flyTo(geoJsonData)} />
   ) : null;
