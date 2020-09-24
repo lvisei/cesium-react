@@ -12,3 +12,4 @@ package.json
 *.config.js
 
 /src/utils/registerServiceWorker.js
+/src/libs/

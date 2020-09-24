@@ -1,11 +1,10 @@
 import React from 'react';
-import Cesium from 'cesium';
+import { Viewer, Resource } from 'cesium';
 import { CzmlDataSource, withCesium } from 'resium';
-import { Resource } from '@/stores/modules/appViewer';
 
 interface Iprops {
-  cesium?: { viewer: Cesium.Viewer };
-  czmlData: Resource;
+  cesium?: { viewer: Viewer };
+  czmlData: string | object | Resource | undefined;
 }
 
 const Czml: React.FunctionComponent<Iprops> = ({ cesium, czmlData }) => {

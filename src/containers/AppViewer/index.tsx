@@ -1,9 +1,19 @@
 import React, { PureComponent } from 'react';
 import { observer, inject } from 'mobx-react';
-import * as Cesium from 'cesium';
-import { CesiumTerrainProvider } from 'cesium';
-import { Viewer, CameraFlyTo } from 'resium';
-import appViewerStore from '@/stores/modules/appViewer';
+import {
+  Viewer as cesiumViewer,
+  Camera,
+  Ion,
+  IonResource,
+  CesiumTerrainProvider,
+  Cartographic,
+  Rectangle,
+  Cartesian3,
+  Matrix4,
+  Cesium3DTileset as cesium3DTileset,
+} from 'cesium';
+import { Viewer, CameraFlyTo, Cesium3DTileset } from 'resium';
+import { cesiumDefalutConfig } from '@/config';
 import ImageryLayers from './ImageryLayers';
 import GeoJson from './GeoJson';
 import Czml from './Czml';
@@ -11,8 +21,8 @@ import EventHandler from './EventHandler';
 import Entitys from './Entitys';
 import { IStores } from '@/stores';
 
-Cesium.Ion.defaultAccessToken = appViewerStore.cesiumAccessToken;
-// (Cesium as any).Ion.defaultAccessToken = appViewerStore.cesiumAccessToken;
+Camera.DEFAULT_VIEW_RECTANGLE = Rectangle.fromDegrees(...cesiumDefalutConfig.defaultView);
+Ion.defaultAccessToken = cesiumDefalutConfig.cesiumAccessToken;
 
 interface IProps {
   appViewer?: IStores['appViewer'];
@@ -22,14 +32,14 @@ interface IProps {
 @observer
 class AppViewer extends PureComponent<IProps, {}> {
   ref: { current: any | HTMLDivElement };
-  viewer: Cesium.Viewer | undefined | any;
+  viewer: cesiumViewer | undefined;
   terrainProvider: CesiumTerrainProvider;
 
   constructor(props: IProps) {
     super(props);
     this.ref = React.createRef();
     this.terrainProvider = new CesiumTerrainProvider({
-      url: Cesium.IonResource.fromAssetId(3956),
+      url: IonResource.fromAssetId(3956),
     });
     this.state = {};
   }
@@ -37,16 +47,25 @@ class AppViewer extends PureComponent<IProps, {}> {
   componentDidMount() {
     if (this.ref.current) {
       this.viewer = this.ref.current.cesiumElement;
-      this.viewer.scene.debugShowFramesPerSecond = true;
-      this.viewer.cesiumWidget.creditContainer.style.display = 'none';
+      this.viewer!.scene.debugShowFramesPerSecond = true;
+      this.viewer!.cesiumWidget.creditContainer.setAttribute('style', 'display:none;');
     }
   }
 
-  _handleReady = (tileset: any) => {
-    console.log(tileset);
-
+  _handleReady3DTileset = (tileset: cesium3DTileset) => {
+    // console.log('tileset: ', tileset);
     if (this.viewer) {
-      this.viewer.zoomTo(tileset);
+      const boundingSphere = tileset.boundingSphere;
+      const cartographic = Cartographic.fromCartesian(boundingSphere.center);
+      const surface = Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, 0.0);
+      const offset = Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, -100);
+      const translation = Cartesian3.subtract(offset, surface, new Cartesian3());
+      tileset.modelMatrix = Matrix4.fromTranslation(translation);
+      const that = this.viewer;
+      setTimeout(() => {
+        that.flyTo(tileset);
+      }, 1500);
+      // this.viewer.flyTo(tileset);
     }
   };
 
@@ -55,7 +74,7 @@ class AppViewer extends PureComponent<IProps, {}> {
   }
 
   render() {
-    const { geoJsonData, czmlData, destination, imageryProviders } = this.props.appViewer!;
+    const { geoJsonData, czmlData, destination, imageryProviders, threeDTileset } = this.props.appViewer!;
 
     console.log('AppViewer render');
 
@@ -64,6 +83,7 @@ class AppViewer extends PureComponent<IProps, {}> {
         full
         animation={false}
         shouldAnimate={true}
+        selectionIndicator={true}
         baseLayerPicker={false}
         timeline={false}
         geocoder={false}
@@ -76,7 +96,7 @@ class AppViewer extends PureComponent<IProps, {}> {
         {destination ? <CameraFlyTo destination={destination} /> : null}
         <GeoJson geoJsonData={geoJsonData} />
         <Czml czmlData={czmlData} />
-        {/* <Cesium3DTileset url={IonResource.fromAssetId(5714)} onReady={this._handleReady} /> */}
+        <Cesium3DTileset url={threeDTileset} onReady={this._handleReady3DTileset} />
       </Viewer>
     );
   }
