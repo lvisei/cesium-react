@@ -2,12 +2,11 @@ import React from 'react';
 import { WebMapTileServiceImageryProvider } from 'cesium';
 import { ImageryLayer } from 'resium';
 import memoize from 'memoize-one';
-import { WebMapTileServiceImagery } from '@/stores/modules/appViewer';
 
 const imageryProvider = memoize((imageryProvider) => new WebMapTileServiceImageryProvider(imageryProvider));
 
 const ImageryLayers = React.memo(
-  ({ imageryProviders }: { imageryProviders: WebMapTileServiceImagery[] }) => {
+  ({ imageryProviders }: { imageryProviders: WebMapTileServiceImageryProvider.ConstructorOptions[] }) => {
     console.log('ImageryLayers render');
     return (
       <>

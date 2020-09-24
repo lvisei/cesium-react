@@ -1,10 +1,9 @@
 import React from 'react';
-import { Viewer as CesiumViewer } from 'cesium';
+import { Viewer as CesiumViewer, Resource } from 'cesium';
 import { GeoJsonDataSource, Context, useCesium } from 'resium';
-import { Resource } from '@/stores/modules/appViewer';
 
 interface Iprops {
-  geoJsonData: Resource;
+  geoJsonData: string | object | Resource | undefined;
 }
 
 interface ICesiumContext {

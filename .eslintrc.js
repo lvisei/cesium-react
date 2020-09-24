@@ -8,7 +8,7 @@ module.exports = {
     'no-console': 'off',
     'no-debugger': 'off',
     'no-unused-vars': 'off',
-    'prettier/prettier': 'error'
+    'prettier/prettier': process.env.NODE_ENV === 'development' ? 'warn' : 'error',
     // '@typescript-eslint/no-unused-vars': 'off'
-  }
+  },
 };
