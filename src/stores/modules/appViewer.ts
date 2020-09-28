@@ -22,6 +22,7 @@ export interface IAppViewerState {
 export class AppViewer implements IAppViewerState {
   public imageryProviders = [td_img_imageryProvider, td_cia_imageryProvider];
   public threeDTileset = '/3D Tiles/Test_mode/tileset.json';
+  public terrain = '/terrain';
 
   @observable.ref public czmlData: CesiumResource;
   @observable.ref public geoJsonData: CesiumResource;
