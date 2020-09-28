@@ -19,6 +19,10 @@
 
 ### Webpack 打包
 
+- [CesiumJS and Webpack](https://cesium.com/docs/tutorials/cesium-and-webpack/)
+- [Set up webpack configuration](https://resium.darwineducation.com/installation#2-set-up-webpack-configuration)
+- [craco-cesium](https://github.com/darwin-education/craco-cesium#readme) - Cesium with create-react-app
+
 ### Cesuim Api
 
 #### Entity 实体
@@ -68,3 +72,5 @@ new Cesium.Globe(ellipsoid)
 - toDegrees(radians) 弧度转为度的十进制
 
 ### Cesuim 插件
+
+- [cesium-tdt](https://github.com/ngcc-tdt/plugin/tree/master/cesiumTdt)

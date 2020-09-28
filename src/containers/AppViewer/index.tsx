@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, { createRef, PureComponent } from 'react';
 import { observer, inject } from 'mobx-react';
 import {
-  Viewer as cesiumViewer,
+  Viewer as CesiumViewer,
   Camera,
   Ion,
   IonResource,
@@ -32,14 +32,17 @@ interface IProps {
 @observer
 class AppViewer extends PureComponent<IProps, {}> {
   ref: { current: any | HTMLDivElement };
-  viewer: cesiumViewer | undefined;
+  viewer: CesiumViewer | undefined;
   terrainProvider: CesiumTerrainProvider;
 
   constructor(props: IProps) {
     super(props);
-    this.ref = React.createRef();
+    this.ref = createRef();
     this.terrainProvider = new CesiumTerrainProvider({
+      // url: props!.appViewer!.terrain,
       url: IonResource.fromAssetId(3956),
+      requestWaterMask: true,
+      requestVertexNormals: true,
     });
     this.state = {};
   }
