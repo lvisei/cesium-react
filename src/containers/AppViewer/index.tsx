@@ -4,7 +4,7 @@ import {
   Viewer as CesiumViewer,
   Camera,
   Ion,
-  IonResource,
+  // IonResource,
   CesiumTerrainProvider,
   Cartographic,
   Rectangle,
@@ -39,8 +39,8 @@ class AppViewer extends PureComponent<IProps, {}> {
     super(props);
     this.ref = createRef();
     this.terrainProvider = new CesiumTerrainProvider({
-      // url: props!.appViewer!.terrain,
-      url: IonResource.fromAssetId(3956),
+      url: props!.appViewer!.terrain,
+      // url: IonResource.fromAssetId(3956),
       requestWaterMask: true,
       requestVertexNormals: true,
     });
@@ -61,7 +61,7 @@ class AppViewer extends PureComponent<IProps, {}> {
       const boundingSphere = tileset.boundingSphere;
       const cartographic = Cartographic.fromCartesian(boundingSphere.center);
       const surface = Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, 0.0);
-      const offset = Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, -100);
+      const offset = Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, 5.0);
       const translation = Cartesian3.subtract(offset, surface, new Cartesian3());
       tileset.modelMatrix = Matrix4.fromTranslation(translation);
       const that = this.viewer;
