@@ -21,8 +21,8 @@ export interface IAppViewerState {
 
 export class AppViewer implements IAppViewerState {
   public imageryProviders = [td_img_imageryProvider, td_cia_imageryProvider];
-  public threeDTileset = '/3D Tiles/Test_mode/tileset.json';
-  public terrain = '/terrain';
+  public threeDTileset = 'https://earthsdk.com/v/last/Apps/assets/dayanta/tileset.json';
+  public terrain = 'https://data.marsgis.cn/terrain';
 
   @observable.ref public czmlData: CesiumResource;
   @observable.ref public geoJsonData: CesiumResource;
