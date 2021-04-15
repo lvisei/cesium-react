@@ -25,90 +25,172 @@
 
 ## Cesium 常用坐标系
 
-- 屏幕坐标
+### 1. 屏幕坐标
 
-  - 像素值
+- 像素值
 
-- 笛卡尔平面坐标
+### 2. 笛卡尔平面坐标
 
-  - `new Cesium.Cartesian2(x, y)`
+- `new Cesium.Cartesian2(x, y)`
 
-- 笛卡尔空间直角坐标
+### 3. 笛卡尔空间直角坐标
 
-  - `new Cesium.Cartesian3(x, y, z)`
+> 椭球中心为原点的空间直角坐标系中的一个点的坐标
 
-- 地理坐标
-  - 默认为弧度值
+- `new Cesium.Cartesian3(x, y, z)`
+
+### 4. 经纬度
+
+> 地理坐标系，坐标原点在椭球的质心。
+
+> 经度：参考椭球面上某点的大地子午面与本初子午面间的两面角。东正西负。
+
+> 纬度 ：参考椭球面上某点的法线与赤道平面的夹角。北正南负。
+
+Cesuim中没有具体的经纬度对象，要得到经纬度首先需要计算为弧度，再进行转换。
+
+### 5. 弧度
+
+> 弧度即角度对应弧长是半径的倍数
+
+> 角度转弧度：π/180×角度
+
+> 弧度变角度：180/π×弧度
+
+  - longitude, latitude 弧度值
+  - height 单位米
   - `new Cesium.Cartographic(longitude, latitude, height)`
 
 ## Cesium 坐标变换
 
-1. 屏幕坐标与笛卡尔空间直角坐标
+### 1. 地理坐标与笛卡尔空间直角坐标
 
-获取鼠标单击后在屏幕中的坐标
+#### 1.1 地理坐标(经纬度) 转换为 笛卡尔空间直角坐标
 
-```js
-const hander = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
-//绑定鼠标左点击事件
-hander.setInputAction(function (event){
-//获取鼠标点的 windowPosition
-  const windowPosition = event.position;
-}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-```
-
-屏幕坐标转换为笛卡尔空间直角坐标
-三维模式下
+- 方式一：直接转换
 
 ```js
-const ray = viewer.camera.getPickRay(windowPosition);
-const cartesian = viewerscene.globe.pick(ray, viewer.scene);
-```
-二维模式下
-```
-const cartesian = scene.camera.pickEllipsoid(position, scene.globe.ellipsoid);
+const position_cartesian3 = Cesium.Cartesian3.fromDegrees(longitude, latitude, height, ellipsoid)
 ```
 
-笛卡尔空间直角坐标转换为屏幕坐标
+- 方式二：先转换成弧度再转换
+
+> 借助 ellipsoid 对象的方法
+
 ```js
-const pick = Cesium.SceneTransforms.wgs84ToWindowCoordinates(viewer.scene, cartesian);
+const ellipsoid = viewer.scene.globe.ellipsoid;
+const cartographic = Cesium.Cartographic.fromDegrees(longitude, latitude, height, ellipsoid);
+const position_cartesian3 = ellipsoid.cartographicToCartesian(cartographic);
 ```
-2. 地理坐标与笛卡尔空间直角坐标
 
- 笛卡尔空间直角坐标 转换为 地理坐标(弧度制)
+#### 1.2 地理坐标(弧度制) 转换为 笛卡尔空间直角坐标
+
+``` js
+const position_cartesian3 = Cesium.Cartesian3.fromRadians(longitude, latitude, height, ellipsoid)
+```
+
+#### 1.3 笛卡尔空间直角坐标 转换为 地理坐标(弧度制)
 
 ```js
 const cartographic = Cesium.Cartographic.fromCartesian(cartesian)
 ```
 
-地理坐标(弧度制) 转换为 笛卡尔空间直角坐标
+#### 1.4 笛卡尔空间直角坐标 转换为 地理坐标(经纬度)
 
-``` js
-const position = Cesium.Cartesian3.fromRadians(lng, lat, height)
-```
-
-笛卡尔空间直角坐标 转换为 地理坐标(经纬度)
+- 方式一
 
 ```js
 const cartographic = Cesium.Cartographic.fromCartesian(cartesian) 
 const lat = Cesium.Math.toDegrees(cartographic.latitude);
 const lng = Cesium.Math.toDegrees(cartographic.longitude);
-const height = cartographic.height;
+const alt = cartographic.height;
 ```
 
-度数与弧度互转 
+- 方式二
+
+> 借助 ellipsoid 对象的方法
 
 ```js
+const ellipsoid = viewer.scene.globe.ellipsoid;
+const position_cartesian3 = new Cesium.cartesian3(x, y, z);
+const cartographic = ellipsoid.cartesianToCartographic(position_cartesian3);
+const lat = Cesium.Math.toDegrees(cartographic.latitude);
+const lng = Cesium.Math.toDegrees(cartographic.longitude);
+const alt = cartographic.height;
+```
+
+> 经纬度与弧度互转 
+
+```js
+// 将弧度转化为经纬度
 Cesium.Math.toDegrees(radians)
+// 将经纬度转化弧度
 Cesium.Math.toRadians(degrees)
 ```
 
-地理坐标(经纬度) 转换为 笛卡尔空间直角坐标
+### 2. 屏幕坐标与笛卡尔空间直角坐标
+
+2.1 获取鼠标单击后在屏幕中的坐标
 
 ```js
-const position = Cesium.Cartesian3.fromDegrees(longitude, latitude, height)
+const hander = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+//绑定鼠标左点击事件
+hander.setInputAction((event) => {
+//获取鼠标点的 windowPosition: Cesium.Cartesian2
+  const windowPosition = event.position;
+}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+```
+
+屏幕坐标转换为笛卡尔空间直角坐标
+
+- 三维模式下
+
+```js
+const ray = viewer.camera.getPickRay(windowPosition);
+const position_cartesian3 = viewer.scene.globe.pick(ray, viewer.scene);
+```
+
+- 二维模式下
+
+```js
+const position_cartesian3 = viewer.scene.camera.pickEllipsoid(windowPosition, scene.globe.ellipsoid);
+```
+
+笛卡尔空间直角坐标转换为屏幕坐标
+
+```js
+// position_cartesian2: Cartesian2
+const position_cartesian2 = Cesium.SceneTransforms.wgs84ToWindowCoordinates(viewer.scene, position_cartesian3);
 ```
 
 ## Cesuim Api
+
+### Ellipsoid 行星形状定义
+
+```js
+new Cesium.Ellipsoid(x, y, z);
+```
+
+### Globe
+
+```js
+new Cesium.Globe(ellipsoid);
+```
+
+Methods
+
+- getHeight(cartographic) 获取表面的高度
+
+### Math
+
+- Cesium.Math.toDegrees(radians) 将弧度转化为经纬度
+- Cesium.Math.toRadians(degrees) 将经纬度转化弧度
+
+### Cartographic 地理坐标(弧度制)
+
+```js
+new Cesium.Cartographic(longitude, latitude, height);
+```
 
 ### ImageLayer 图层加载
 
@@ -126,38 +208,11 @@ Members
 
 Methods
 
-- pickEllipsoid(windowPosition, ellipsoid, result) 将二维坐标转换为对应椭球体三维坐标
+- pickEllipsoid(windowPosition, ellipsoid) 将屏幕坐标转换为对应椭球体三维笛卡尔坐标
 
-### Cartographic 地理坐标
+### Entity 实体
 
-```js
-new Cesium.Cartographic(longitude, latitude, height);
-```
-
-### Ellipsoid
-
-```js
-new Cesium.Ellipsoid(x, y, z);
-```
-
-### Globe
-
-```js
-new Cesium.Globe(ellipsoid);
-```
-
-Methods
-
-- getHeight(cartographic) 获取海拔高度
-
-### Math
-
-- toDegrees(radians) 弧度转为度的十进制
-- Cesium.Math..toRadians(degrees) 度的十进制转为弧度
-
-### Entity 矢量数据
-
-### Primitive 矢量数据
+### Primitive 图元
 
 [Primitive](https://cesium.com/docs/cesiumjs-ref-doc/Primitive.html?classFilter=Primitive) 由两个部分组成
 
