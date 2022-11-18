@@ -69,7 +69,7 @@
     "patch-package": "^6.4.7",
     "prettier": "^2.3.0",
     "react-hot-loader": "^4.13.0",
-    "react-scripts": "^3.4.4",
+    "react-scripts": "^5.0.1",
     "typescript": "^3.9.9"
   }
 }
